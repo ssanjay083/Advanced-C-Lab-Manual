@@ -10,12 +10,45 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node{
+    int data; 
+    struct Node *next;
+}*head;
+
+void search(int data)
+{
+ 
+ struct Node*temp=head;
+ int flag=0;
+ int i=0;
+ while(temp->data!=data)
+ {
+     i++;
+     if(temp->next!=NULL)
+     temp=temp->next;
+     else break;
+     
+ }
+ if(temp->data==data)
+ {
+     printf("item %d found at location %d",data,i+1);
+     flag=1;
+ }
+ if(flag==0)
+ {
+     printf("Item not found");
+ }
+ 
+    
+}
+
+```
 
 Output:
 
-//paste your output here
 
+![437751016-b2a1e37b-399e-4a08-90dc-c8cb256fbcb5](https://github.com/user-attachments/assets/359a5e0a-9a6a-4543-abc7-ba41bfc413a2)
 
 
 Result:
@@ -34,11 +67,37 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node{
+    int data; 
+    struct Node *next;
+}*head;
+
+
+void insert(int data)
+{
+    struct Node* n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node* temp=head;
+    n->data=data;
+    n->next=NULL;
+    if(head==NULL){
+        
+        head=n;
+    }else{
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=n;
+        
+    }
+}
+
+```
 
 Output:
 
-//paste your output here
+
+![437751205-112ee17f-cc14-4093-81cb-844afcefa267](https://github.com/user-attachments/assets/1bb94332-7cf5-4108-a522-85fe82c4d07c)
 
  
 Result:
@@ -58,11 +117,31 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    int data;
+}*head;
+
+void display()
+{
+    struct Node* temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+    
+}
+
+```
 
 Output:
+![437751244-3d248bd3-f4d0-41b2-b6e0-68b024ab074f](https://github.com/user-attachments/assets/e9aaec43-e748-4ddd-a19f-eb42224ab3ac)
 
-//paste your output here
+
 
 
 Result:
@@ -83,11 +162,39 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+
+void insert(float data)
+{
+    struct Node* n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node* temp=head;
+    n->data=data;
+    n->next=NULL;
+    if(head==NULL){
+        head=n;
+        return;
+    }
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next=n;
+    
+    
+}
+
+
+```
 
 Output:
+![437751286-fa66db89-a305-4e4e-a92a-cd6e0c51a7c0](https://github.com/user-attachments/assets/892246c4-7cb5-48ce-8893-7bea795aff72)
 
-//paste your output here
+
 
 
 Result:
@@ -125,19 +232,90 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+```
+
+struct Node
+{
+    int data; 
+    struct Node *next;
+}*head;
+void display()
+{
+    struct Node* temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+void insert(int data)
+{
+    struct Node* temp=head;
+    struct Node* ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    ptr->next=NULL;
+    if(head==NULL)
+    {
+        head=ptr;
+    }else
+    {
+        while(temp->next!=NULL)        {
+            temp=temp->next;
+        }
+        temp->next=ptr;
+    }
+}
+void search(int data)
+{
+    int i=1;
+    struct Node* temp=head;
+    if(head==NULL)
+    {
+        printf("Elements not found");
+    }else
+    {
+        while(temp!=NULL)
+        {
+            
+            if(temp->data==data)
+            {
+                printf("item %d found at location %d\n",data,i);
+                return;
+            }
+            i++;
+            temp=temp->next;
+        }
+        printf("Item not found\n");
+    }
+}
+void delete()
+{
+    struct Node* temp=head;
+    if(head==NULL)
+    {
+        printf("UNDERFLOW");
+    }else
+    {
+        head=head->next;
+        free(temp);
+        printf("Node deleted\n");
+    }
+    
+}
+
+
+```
 
 Output:
 
-//paste your output here
 
 
+![437751415-67bfd427-9494-4681-85a7-ddd606f61418](https://github.com/user-attachments/assets/dc01ad81-8391-49e4-86fe-f810aa361dfb)
 
 
 
 Result:
 Thus, the function that deletes a given element from a linked list is verified successfully.
-
 
 
 
