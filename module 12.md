@@ -15,11 +15,56 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* head = NULL;
+
+void display() {
+    struct Node* p = head;
+    if (p == NULL) {
+        printf("Linked list is empty.\n");
+        return;
+    }
+    printf("Linked list elements are:\n");
+    while (p != NULL) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Node* first = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+
+    first->data = 10;
+    second->data = 20;
+    third->data = 30;
+
+    first->next = second;
+    second->next = third;
+    third->next = NULL;
+
+    head = first;
+
+    display();
+
+    return 0;
+}
+```
 
 Output:
+![437760573-7b29f888-a607-4de2-b874-adf7ced3a153](https://github.com/user-attachments/assets/45cdaa59-9f9c-4baf-96a7-14f7af804899)
 
-//paste your output here
+
 
 
 Result:
@@ -40,11 +85,89 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* head = NULL;
+
+void push(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = head;
+    head = newNode;
+}
+
+void pop() {
+    if (head == NULL) {
+        printf("Stack is empty.\n");
+    } else {
+        struct Node* temp = head;
+        printf("Popped element: %d\n", head->data);
+        head = head->next;
+        free(temp);
+    }
+}
+
+void display() {
+    struct Node* p = head;
+    if (p == NULL) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Stack elements are:\n");
+        while (p != NULL) {
+            printf("%d ", p->data);
+            p = p->next;
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. Push\n2. Pop\n3. Display\n4. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+}
+
+
+```
 
 Output:
 
-//paste your output here
+![437761197-bed55f2c-5209-4fdd-896c-487be40c6c4f](https://github.com/user-attachments/assets/43dcfb02-de12-4913-bee7-ffcd03772e35)
+
+
 
 
 
@@ -64,11 +187,78 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    if (front == NULL && rear == NULL) {
+        front = rear = newNode;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+}
+
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+    } else {
+        struct Node* temp = front;
+        printf("Queue elements are:\n");
+        while (temp != NULL) {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. Enqueue\n2. Display\n3. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                display();
+                break;
+            case 3:
+                return 0;
+            default:
+                printf("Invalid choice. Try again.\n");
+        }
+    }
+}
+
+
+```
 
 Output:
 
-//paste your output here
+![437761247-90020bff-3fb1-4275-89fe-f0124c2df9e4](https://github.com/user-attachments/assets/996906fb-05c7-4e2d-9df5-27bd3e2e5c9f)
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -90,11 +280,81 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void enqueue(int value) {
+    struct Node* p = (struct Node*)malloc(sizeof(struct Node));
+    if (p == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    p->data = value;
+    p->next = NULL;
+
+    if (front == NULL && rear == NULL) {
+        front = rear = p;
+    } else {
+        rear->next = p;
+        rear = p;
+    }
+}
+
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+    } else {
+        struct Node* temp = front;
+        printf("Queue elements are:\n");
+        while (temp != NULL) {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. Enqueue\n2. Display\n3. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                display();
+                break;
+            case 3:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+}
+
+
+```
 
 Output:
 
-//paste your output here
+![437761261-681078a0-9b33-48c1-b715-1279ab17554c](https://github.com/user-attachments/assets/657279dc-aed4-4b63-b8de-8a5db7dce238)
+
+
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,16 +377,96 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void enqueue(int value) {
+    struct Node* p = (struct Node*)malloc(sizeof(struct Node));
+    if (p == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    p->data = value;
+    p->next = NULL;
+
+    if (front == NULL && rear == NULL) {
+        front = rear = p;
+    } else {
+        rear->next = p;
+        rear = p;
+    }
+}
+
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+    } else {
+        struct Node* temp = front;
+        printf("Queue elements are:\n");
+        while (temp != NULL) {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+int peek() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return -1;  // Return -1 to indicate an empty queue
+    } else {
+        return front->data;
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. Enqueue\n2. Display\n3. Peek\n4. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                display();
+                break;
+            case 3:
+                printf("Front element is: %d\n", peek());
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+}
+
+
+```
 
 Output:
 
-//paste your output here
+
+![437761303-54ae26ca-5e29-48ce-bbdd-c23656be9aec](https://github.com/user-attachments/assets/784f7eed-7796-4110-a173-a5cbe4f59a67)
 
 
 
 Result:
 
 Thus, the program to retrieve the "peek" (the front element) of a queue implemented using a linked list is verified successfully.
-
 
